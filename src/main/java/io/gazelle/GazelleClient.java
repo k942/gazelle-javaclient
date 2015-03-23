@@ -1,13 +1,13 @@
 package io.gazelle;
 
+import io.gazelle.policies.WhatcdRequestPolicy;
+
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.HttpCookie;
 import java.net.URI;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+import java.util.Optional;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -23,8 +23,6 @@ import org.glassfish.jersey.client.ClientProperties;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 public class GazelleClient {
 
@@ -32,12 +30,12 @@ public class GazelleClient {
 
 	private String username;
 	private String password;
-	private HttpCookie sessionCookie;
 	private String gazelleUrl;
 
-	private ObjectMapper blu = new ObjectMapper().setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-	private Client client = ClientBuilder.newClient().register(blu);
+	private ObjectMapper objectMapper = new ObjectMapper().setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+	private Client client = ClientBuilder.newClient().register(objectMapper);
 	private CookieManager cookieManager = new CookieManager();
+	private Optional<HttpCookie> sessionCookie = Optional.empty();
 
 	private WebTarget baseTarget;
 	private WebTarget loginTarget;
@@ -68,6 +66,7 @@ public class GazelleClient {
 	}
 
 	private void login() {
+		LOGGER.info("Logging on website: " + gazelleUrl);
 		Form form = new Form();
 		form.param("username", username);
 		form.param("password", password);
@@ -77,15 +76,11 @@ public class GazelleClient {
 		loginTarget.property(ClientProperties.FOLLOW_REDIRECTS, true);
 
 		List<HttpCookie> cookies = cookieManager.getCookieStore().get(URI.create(gazelleUrl));
-		for (HttpCookie c : cookies) {
-			if (c.getName().equalsIgnoreCase("session")) {
-				sessionCookie = c;
-			}
-		}
+		sessionCookie = cookies.stream().filter(c -> c.getName().equalsIgnoreCase("session")).findFirst();
 	}
 
 	private boolean isLogged() {
-		return sessionCookie != null;
+		return sessionCookie.isPresent();
 	}
 
 	private void ensureLogin() {
@@ -101,8 +96,8 @@ public class GazelleClient {
 	}
 
 	private <T> T request(WebTarget target, Class<T> responseType) {
-		WhatcdRequestPolicy.enforceRequestLimit();
-		return target.request(MediaType.APPLICATION_JSON_TYPE).cookie(Cookie.valueOf(sessionCookie.getValue()))
+		WhatcdRequestPolicy.INSTANCE.enforce();
+		return target.request(MediaType.APPLICATION_JSON_TYPE).cookie(Cookie.valueOf(sessionCookie.get().getValue()))
 				.get(responseType);
 	}
 

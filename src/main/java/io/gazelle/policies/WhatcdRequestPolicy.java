@@ -1,10 +1,12 @@
-package io.gazelle;
+package io.gazelle.policies;
 
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 
-public class WhatcdRequestPolicy {
+public enum WhatcdRequestPolicy implements Policy {
+	INSTANCE;
+
 	private static final Logger LOGGER = Logger.getLogger(WhatcdRequestPolicy.class);
 
 	private static final int MAX_REQUEST = 5;
@@ -17,7 +19,7 @@ public class WhatcdRequestPolicy {
 
 	}
 
-	private static boolean isRequestLimited() {
+	private boolean isRequestLimited() {
 		long timeNow = System.currentTimeMillis();
 		long durationSinceLastReset = timeNow - timeLastReset;
 		if (durationSinceLastReset > TIME_LIMIT) {
@@ -27,7 +29,7 @@ public class WhatcdRequestPolicy {
 		return nbRequestInTimeLimit >= MAX_REQUEST;
 	}
 
-	public static void enforceRequestLimit() {
+	public void enforce() {
 		while (isRequestLimited()) {
 			try {
 				LOGGER.debug("Refrain from making more than five (5) requests every ten (10) seconds. "
