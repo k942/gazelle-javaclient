@@ -1,5 +1,7 @@
 # gazelle-javaclient
 
+[![Build Status](https://snap-ci.com/k942/gazelle-javaclient/branch/master/build_image)](https://snap-ci.com/k942/gazelle-javaclient/branch/master)
+
 gazelle-javaclient is a Java client implementation for the [Gazelle JSON-API](https://github.com/WhatCD/Gazelle/wiki/JSON-API-Documentation)
 
 Features:
