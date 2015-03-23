@@ -7,6 +7,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -28,19 +29,14 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 public class GazelleClient {
 
 	private static final Logger LOGGER = Logger.getLogger(GazelleClient.class);
-	private static final int MAX_REQUEST = 5;
-	private static final int TIME_LIMIT_SECONDS = 10;
 
-	private volatile int nbRequestInTimeLimit = 0;
 	private String username;
 	private String password;
 	private HttpCookie sessionCookie;
 	private String gazelleUrl;
 
-	private JacksonJsonProvider jackson_json_provider = new JacksonJaxbJsonProvider();
-	private ObjectMapper blu = jackson_json_provider.locateMapper(Object.class, MediaType.APPLICATION_JSON_TYPE)
-			.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-	private Client client = ClientBuilder.newClient().register(jackson_json_provider);
+	private ObjectMapper blu = new ObjectMapper().setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+	private Client client = ClientBuilder.newClient().register(blu);
 	private CookieManager cookieManager = new CookieManager();
 
 	private WebTarget baseTarget;
@@ -50,14 +46,6 @@ public class GazelleClient {
 	private GazelleClient() {
 		// Use factory
 		CookieHandler.setDefault(cookieManager);
-
-		Timer timer = new Timer(true);
-		timer.scheduleAtFixedRate(new TimerTask() {
-			@Override
-			public void run() {
-				nbRequestInTimeLimit = 0;
-			}
-		}, 0, TIME_LIMIT_SECONDS * 1000);
 	}
 
 	public void setupTargets() {
@@ -113,22 +101,9 @@ public class GazelleClient {
 	}
 
 	private <T> T request(WebTarget target, Class<T> responseType) {
-		enforceRequestLimit();
-		nbRequestInTimeLimit++;
+		WhatcdRequestPolicy.enforceRequestLimit();
 		return target.request(MediaType.APPLICATION_JSON_TYPE).cookie(Cookie.valueOf(sessionCookie.getValue()))
 				.get(responseType);
-	}
-
-	private void enforceRequestLimit() {
-		while (nbRequestInTimeLimit >= MAX_REQUEST) {
-			try {
-				LOGGER.info("Refrain from making more than five (5) requests every ten (10) seconds. "
-						+ "Sleeping a while (1second), to enforce this rule.");
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
 	}
 
 	public String getUsername() {
