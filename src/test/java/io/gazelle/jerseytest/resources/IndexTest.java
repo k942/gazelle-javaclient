@@ -53,7 +53,7 @@ public class IndexTest extends JerseyTest {
 
 	@Test
 	public void test() {
-		GazelleClient client = GazelleClient.newInstance("http://localhost:9998", "blu", "lawl");
+		GazelleClient client = GazelleClient.newInstance(getBaseUri().toString(), "blu", "lawl");
 		Index index = client.request("index", Index.class);
 		Assert.assertEquals("dr4g0n", index.getResponse().getUsername());
 	}
