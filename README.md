@@ -10,7 +10,7 @@ Features:
 
 Technology aspects:
 - Maven
-- Java 7
+- Java 8
 - Exploits [JAX-RS Client API](https://jersey.java.net/documentation/2.17/client.html)
 - Exploits [Jackson 2.x](https://jersey.java.net/documentation/2.17/media.html)
 
