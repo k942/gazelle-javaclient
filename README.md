@@ -18,6 +18,7 @@ Technology aspects:
 ## Roadmap (TODOs)
 - Cover all API features
 - Intuitive Java API to access JSON-API features
+- Full testing of client against mocked API during maven build
 
 ## Usage example
 ```Java
