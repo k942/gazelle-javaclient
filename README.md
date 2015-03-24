@@ -11,8 +11,9 @@ Features:
 Technology aspects:
 - Maven
 - Java 8
-- Exploits [JAX-RS Client API](https://jersey.java.net/documentation/2.17/client.html)
-- Exploits [Jackson 2.x](https://jersey.java.net/documentation/2.17/media.html)
+- [JAX-RS Client API](https://jersey.java.net/documentation/2.17/client.html)
+- [Jackson 2.x](https://jersey.java.net/documentation/2.17/media.html)
+- Client testing by mocking API with [Jersey test framework](https://jersey.java.net/documentation/2.17/test-framework.html)
 
 ## Roadmap (TODOs)
 - Cover all API features
