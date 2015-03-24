@@ -2,7 +2,7 @@
 
 [![Build Status](https://snap-ci.com/k942/gazelle-javaclient/branch/master/build_image)](https://snap-ci.com/k942/gazelle-javaclient/branch/master)
 
-gazelle-javaclient is a Java client implementation for the [Gazelle JSON-API](https://github.com/WhatCD/Gazelle/wiki/JSON-API-Documentation)
+gazelle-javaclient is a Java client for the [Gazelle JSON-API](https://github.com/WhatCD/Gazelle/wiki/JSON-API-Documentation)
 
 Features:
 - Fully SSL 
