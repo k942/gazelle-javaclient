@@ -11,7 +11,7 @@ public class Userstats {
 	private Long downloaded;
 	private double ratio;
 	private double requiredratio;
-	@XmlElement(name="class")
+	@XmlElement(name = "class")
 	private String _class;
 
 	/**
