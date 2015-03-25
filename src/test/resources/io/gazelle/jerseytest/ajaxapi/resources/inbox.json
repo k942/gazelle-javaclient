@@ -1,0 +1,18 @@
+{
+    "status": "success",
+    "response": {
+        "convId": 3421929,
+        "subject": "1 of your torrents has been deleted for inactivity",
+        "sticky": false,
+        "messages": [
+            {
+                "messageId": 4507261,
+                "senderId": 0,
+                "senderName": "System",
+                "sentDate": "2012-06-12 00:54:01",
+                "bbBody": "One of your uploads has been deleted for being unseeded.  Since it didn't break any rules (we hope), please feel free to re-upload it.\n\nThe following torrent was deleted:\nRa - To Sirius [MP3 / 320]",
+                "body": "One of your uploads has been deleted for being unseeded.  Since it didn't break any rules (we hope), please feel free to re-upload it.<br />\n<br />\nThe following torrent was deleted:<br />\nRa - To Sirius [MP3 / 320]"
+            }
+        ]
+    }
+}

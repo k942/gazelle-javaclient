@@ -1,0 +1,44 @@
+{
+    "status": "success",
+    "response": {
+        "bookmarks": [
+            {
+                "id": 71843824,
+                "name": "Spacejams",
+                "year": 2010,
+                "recordLabel": "Hospital Records",
+                "catalogueNumber": "NHS178CD",
+                "tagList": "drum_and_bass electronic",
+                "releaseType": "1",
+                "vanityHouse": false,
+                "image": "http://whatimg.com/i/09930203236341542660.jpg",
+                "torrents": [
+                    {
+                        "id": 29043412,
+                        "groupId": 71843824,
+                        "media": "CD",
+                        "format": "FLAC",
+                        "encoding": "Lossless",
+                        "remasterYear": 0,
+                        "remastered": false,
+                        "remasterTitle": "",
+                        "remasterRecordLabel": "",
+                        "remasterCatalogueNumber": "",
+                        "scene": false,
+                        "hasLog": true,
+                        "hasCue": true,
+                        "logScore": 100,
+                        "fileCount": 15,
+                        "freeTorrent": false,
+                        "size": 563078107,
+                        "leechers": 0,
+                        "seeders": 26,
+                        "snatched": 142,
+                        "time": "2010-11-13 21:25:10",
+                        "hasFile": 29043412
+                    }
+                ]
+            }
+        ]
+    }
+}

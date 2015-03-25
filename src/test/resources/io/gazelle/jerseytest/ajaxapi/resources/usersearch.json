@@ -1,0 +1,25 @@
+{
+    "status": "success",
+    "response": {
+        "currentPage": 1,
+        "pages": 1,
+        "results": [
+            {
+                "userId": 469,
+                "username": "dr4g0n",
+                "donor": true,
+                "warned": false,
+                "enabled": true,
+                "class": "VIP"
+            },
+            {
+                "userId": 874,
+                "username": "usaer",
+                "donor": false,
+                "warned": false,
+                "enabled": true,
+                "class": "Lord"
+            }
+        ]
+    }
+}

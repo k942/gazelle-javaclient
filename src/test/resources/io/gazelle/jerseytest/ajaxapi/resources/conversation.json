@@ -1,0 +1,37 @@
+{
+    "status": "success",
+    "response": {
+        "currentPage": 1,
+        "pages": 3,
+        "messages": [
+            {
+                "convId": 3421929,
+                "subject": "1 of your torrents has been deleted for inactivity",
+                "unread": false,
+                "sticky": false,
+                "forwardedId": 0,
+                "forwardedName": "",
+                "senderId": 0,
+                "username": "",
+                "donor": false,
+                "warned": false,
+                "enabled": true,
+                "date": "2012-06-12 00:54:01"
+            },
+            {
+                "convId": 34219878,
+                "subject": "blulu",
+                "unread": true,
+                "sticky": false,
+                "forwardedId": 0,
+                "forwardedName": "",
+                "senderId": 0,
+                "username": "adfasd",
+                "donor": false,
+                "warned": false,
+                "enabled": true,
+                "date": "2012-06-12 00:54:01"
+            }
+        ]
+    }
+}

@@ -14,8 +14,8 @@ public class IndexTest extends GazelleTest {
 		GazelleClient client = GazelleClient.newInstance(getGazelleURL(), LoginResource.CORRECT_USERNAME,
 				LoginResource.CORRECT_PASSWORD);
 		Index index = client.request("index", Index.class);
-		Assert.assertEquals("dr4g0n", index.getResponse().getUsername());
-		Assert.assertEquals(469, index.getResponse().getId());
+		Assert.assertEquals("dr4g0n", index.getUsername());
+		Assert.assertEquals(469, index.getId());
 	}
 
 }

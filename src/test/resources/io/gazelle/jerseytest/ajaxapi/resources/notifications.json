@@ -1,0 +1,35 @@
+{
+  "status": "success",
+  "response": {
+    "currentPages": 1,
+    "pages": 105,
+    "numNew": 0,
+    "results": [{
+      "torrentId": 30194383,
+      "groupId": 71944561,
+      "groupName": "You Are a Tourist",
+      "groupCategoryId": 1,
+      "torrentTags": "alternative indie",
+      "size": 12279586,
+      "fileCount": 2,
+      "format": "MP3",
+      "encoding": "320",
+      "media": "WEB",
+      "scene": false,
+      "groupYear": 2011,
+      "remasterYear": 0,
+      "remasterTitle": "",
+      "snatched": 2,
+      "seeders": 3,
+      "leechers": 0,
+      "notificationTime": "2012-08-08 21:24:15",
+      "hasLog": false,
+      "hasCue": false,
+      "logScore": 0,
+      "freeTorrent": false,
+      "logInDb": false,
+      "unread": false
+    }
+    ]
+  }
+}

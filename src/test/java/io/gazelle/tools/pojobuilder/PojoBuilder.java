@@ -47,6 +47,7 @@ public class PojoBuilder {
 		try {
 			scm.generate(codeModel, className, packagePath, sampleJson.toURI().toURL());
 			File output = new File("target/generated-classes");
+			output.mkdirs();
 			FileUtils.cleanDirectory(output);
 			output.mkdirs();
 			codeModel.build(output);

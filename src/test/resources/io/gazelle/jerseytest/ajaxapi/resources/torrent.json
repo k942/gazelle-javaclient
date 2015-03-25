@@ -1,0 +1,71 @@
+
+  "status": "success",
+  "response": {
+    "requestId": 80983,
+    "requestorId": 75670,
+    "requestorName": "brontosaurus",
+    "requestTax": 0.1,
+    "timeAdded": "2010-01-08 03:12:39",
+    "canEdit": false,
+    "canVote": true,
+    "minimumVote": 20971520,
+    "voteCount": 765,
+    "lastVote": "2012-08-08 20:37:24",
+    "topContributors": [{
+      "userId": 75670,
+      "userName": "brontosaurus",
+      "bounty": 1254160859136
+    }
+    ],
+    "totalBounty": 1489901312461,
+    "categoryId": 1,
+    "categoryName": "Music",
+    "title": "4th Studio Album",
+    "year": 2012,
+    "image": "",
+    "description": "This request is for a proper rip to FLAC at 24 bits \/ 96 kHz of the <br \/>\r\n4th Studio Album by Daft Punk<br \/>\r\n<br \/>\r\n<strong>A USB turntable rip does NOT suffice.<\/strong>",
+    "musicInfo": {
+      "composers": [],
+      "dj": [],
+      "artists": [{
+        "id": 431,
+        "name": "Daft Punk"
+      }],
+      "with": [],
+      "conductor": [],
+      "remixedBy": [],
+      "producer": []
+    },
+    "catalogueNumber": "",
+    "releaseType": 0,
+    "releaseName": "Unknown",
+    "bitrateList": "1",
+    "formatList": "24bit Lossless",
+    "mediaList": "FLAC",
+    "logCue": "Vinyl",
+    "isFilled": false,
+    "fillerId": 0,
+    "fillerName": "0",
+    "torrentId": 0,
+    "timeFilled": "0",
+    "tags": ["electronic", "house", "french"],
+    "comments": [{
+      "postId": 63934,
+      "authorId": 209372,
+      "name": "verysofttoiletpaper",
+      "donor": true,
+      "warned": false,
+      "enabled": true,
+      "class": "Member",
+      "addedTime": "2012-07-10 09:02:34",
+      "avatar": "http:\/\/majastevanovich.files.wordpress.com\/2009\/10\/a20toilet20paper.jpg",
+      "comment": "Can someone explain what is the attractiveness of a vinyl rip as opposed to a CD rip? CD should be direct from the source with no conversions, while on vinyl is has to be converted to analog and digital again.. isn't it loosing fidelity?",
+      "editedUserId": 0,
+      "editedUsername": "",
+      "editedTime": ""
+    }
+    ],
+    "commentPage": 18,
+    "commentPages": 18
+  }
+}
