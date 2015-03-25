@@ -60,7 +60,7 @@ public class GazelleGenerationConfig implements GenerationConfig {
 	 */
 	@Override
 	public char[] getPropertyWordDelimiters() {
-		return new char[] { '-', ' ', '_' };
+		return new char[]{'-', ' ', '_'};
 	}
 
 	/**
