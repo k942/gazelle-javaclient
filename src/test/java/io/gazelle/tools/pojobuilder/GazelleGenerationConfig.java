@@ -126,7 +126,7 @@ public class GazelleGenerationConfig implements GenerationConfig {
 	 */
 	@Override
 	public SourceType getSourceType() {
-		return SourceType.JSON;
+		return SourceType.JSONSCHEMA;
 	}
 
 	/**

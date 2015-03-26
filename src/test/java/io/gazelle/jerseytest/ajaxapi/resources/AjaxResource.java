@@ -1,5 +1,6 @@
 package io.gazelle.jerseytest.ajaxapi.resources;
 
+import io.gazelle.jerseytest.ajaxapi.AjaxResponse;
 import io.gazelle.jerseytest.ajaxapi.ResourceLoader;
 
 import java.io.IOException;
@@ -19,15 +20,32 @@ public class AjaxResource {
 		String action = info.getQueryParameters().getFirst("action");
 		String s = null;
 
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		ajaxResponse.setStatus("failure");
+
 		if (action.equals("index")) {
+			ajaxResponse.setStatus("success");
 			s = ResourceLoader.readJsonStringValueOf(this.getClass().getResourceAsStream("index.json"));
+			ajaxResponse.setResponse(s);
 		}
 		if (action.equals("user")) {
+			ajaxResponse.setStatus("success");
 			String id = info.getQueryParameters().getFirst("id");
 			if (id != null) {
 				s = ResourceLoader.readJsonStringValueOf(this.getClass().getResourceAsStream("index.json"));
 			}
 		}
-		return Response.ok().type(MediaType.APPLICATION_JSON).entity(s).build();
+		if (action.equals("similar_artists")) {
+			ajaxResponse.setStatus("success");
+
+				s = ResourceLoader.readJsonStringValueOf(this.getClass().getResourceAsStream("similarartists.json"));
+		}
+		if (action.equals("artist")) {
+			ajaxResponse.setStatus("success");
+
+				s = ResourceLoader.readJsonStringValueOf(this.getClass().getResourceAsStream("artist.json"));
+		}
+
+		return Response.ok().type(MediaType.APPLICATION_JSON).entity(ajaxResponse).build();
 	}
 }
