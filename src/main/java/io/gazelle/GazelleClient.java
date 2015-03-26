@@ -2,7 +2,6 @@ package io.gazelle;
 
 import io.gazelle.policies.WhatcdRequestPolicy;
 
-import java.io.IOException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.HttpCookie;
@@ -23,10 +22,7 @@ import org.glassfish.jersey.client.ClientProperties;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.AnnotationIntrospector;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 
 public class GazelleClient {
 
@@ -48,15 +44,13 @@ public class GazelleClient {
 	private GazelleClient() {
 		// Use factory
 		CookieHandler.setDefault(cookieManager);
-		
-		AnnotationIntrospector introspector = new JaxbAnnotationIntrospector(objectMapper.getTypeFactory());
-		objectMapper.setAnnotationIntrospector(introspector);
 	}
 
 	public void setupTargets() {
 		baseTarget = client.target(gazelleUrl);
 		loginTarget = baseTarget.path("login.php");
 		apiTarget = baseTarget.path("ajax.php");
+		apiTarget.register(new GazelleResponseFilter(objectMapper));
 	}
 
 	public static GazelleClient newInstance(String gazelleUrl, String username, String password) {
@@ -104,18 +98,9 @@ public class GazelleClient {
 
 	private <T> T request(WebTarget target, Class<T> responseType) {
 		WhatcdRequestPolicy.INSTANCE.enforce();
-		String r = target.request(MediaType.APPLICATION_JSON_TYPE).cookie(Cookie.valueOf(sessionCookie.get().getValue()))
-		.get(String.class);
-		try {
-			JsonNode node = objectMapper.readTree(r);
-			if (!node.get("status").asText().equals("success")) {
-				throw new RuntimeException("Failure");
-			}
-			return objectMapper.readValue(node.get("response").traverse(), responseType);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		
+		return target.request(MediaType.APPLICATION_JSON_TYPE).cookie(Cookie.valueOf(sessionCookie.get().getValue()))
+				.get(responseType);
+
 	}
 
 	public String getUsername() {
