@@ -2,6 +2,7 @@ package io.gazelle.jerseytest.ajaxapi.resources;
 
 import io.gazelle.jerseytest.ajaxapi.AjaxResponse;
 import io.gazelle.jerseytest.ajaxapi.ResourceLoader;
+import io.gazelle.resources.index.Index;
 
 import java.io.IOException;
 
@@ -18,33 +19,19 @@ public class AjaxResource {
 	@GET
 	public Response getHello(@Context UriInfo info) throws IOException {
 		String action = info.getQueryParameters().getFirst("action");
-		String s = null;
+
 
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		ajaxResponse.setStatus("failure");
 
 		if (action.equals("index")) {
 			ajaxResponse.setStatus("success");
-			s = ResourceLoader.readJsonStringValueOf(this.getClass().getResourceAsStream("index.json"));
-			ajaxResponse.setResponse(s);
+			Index idx = new Index();
+			idx.setUsername("dr4g0n");
+			idx.setId(469);
+			ajaxResponse.setResponse(idx);
 		}
-		if (action.equals("user")) {
-			ajaxResponse.setStatus("success");
-			String id = info.getQueryParameters().getFirst("id");
-			if (id != null) {
-				s = ResourceLoader.readJsonStringValueOf(this.getClass().getResourceAsStream("index.json"));
-			}
-		}
-		if (action.equals("similar_artists")) {
-			ajaxResponse.setStatus("success");
-
-				s = ResourceLoader.readJsonStringValueOf(this.getClass().getResourceAsStream("similarartists.json"));
-		}
-		if (action.equals("artist")) {
-			ajaxResponse.setStatus("success");
-
-				s = ResourceLoader.readJsonStringValueOf(this.getClass().getResourceAsStream("artist.json"));
-		}
+		
 
 		return Response.ok().type(MediaType.APPLICATION_JSON).entity(ajaxResponse).build();
 	}

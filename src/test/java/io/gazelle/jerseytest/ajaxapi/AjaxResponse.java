@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonRawValue;
 public class AjaxResponse {
 	
 	String status;
-	@JsonRawValue 
-	String response;
+	Object response;
 	
 	public String getStatus() {
 		return status;
@@ -14,10 +13,10 @@ public class AjaxResponse {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getResponse() {
+	public Object getResponse() {
 		return response;
 	}
-	public void setResponse(String response) {
+	public void setResponse(Object response) {
 		this.response = response;
 	}
 	
