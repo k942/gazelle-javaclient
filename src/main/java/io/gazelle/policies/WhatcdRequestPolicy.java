@@ -32,7 +32,7 @@ public enum WhatcdRequestPolicy implements Policy {
 	public void enforce() {
 		while (isRequestLimited()) {
 			try {
-				LOGGER.debug("Refrain from making more than five (5) requests every ten (10) seconds. "
+				LOGGER.trace("Refrain from making more than five (5) requests every ten (10) seconds. "
 						+ "Sleeping a while (500ms), to enforce this rule.");
 				Thread.sleep(500);
 			} catch (InterruptedException e) {

@@ -1,6 +1,9 @@
 package io.gazelle.tools.pojobuilder;
 
-import io.gazelle.jerseytest.ajaxapi.resources.AjaxResource;
+import io.gazelle.apimock.resources.AjaxResource;
+import io.gazelle.tools.pojobuilder.utils.GazelleGenerationConfig;
+import io.gazelle.tools.pojobuilder.utils.GazelleJacksonAnnotator;
+import io.gazelle.tools.pojobuilder.utils.GazelleRuleFactory;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -25,12 +28,12 @@ public class PojoBuilder {
 
 	private static JCodeModel codeModel = new JCodeModel();
 
-	private static RuleFactory rf = new RuleFactory(new GazelleGenerationConfig(), new GazelleJacksonAnnotator(),
-			new SchemaStore());
+	private static RuleFactory rf = new GazelleRuleFactory(new GazelleGenerationConfig(),
+			new GazelleJacksonAnnotator(), new SchemaStore());
 	private static SchemaMapper scm = new SchemaMapper(rf, new SchemaGenerator());
 
 	public static void main(String[] args) throws IOException, JClassAlreadyExistsException, URISyntaxException {
-		URL json = AjaxResource.class.getResource("");
+		URL json = AjaxResource.class.getResource("/io/gazelle/resources");
 
 		File rfolder = new File(json.toURI());
 		SuffixFileFilter b = new SuffixFileFilter(".json");
@@ -43,7 +46,7 @@ public class PojoBuilder {
 	private static void generatePojoOf(File sampleJson) {
 		String fileName = FilenameUtils.removeExtension(sampleJson.getName());
 		String className = StringUtils.capitalize(fileName);
-		String packagePath = AjaxResource.class.getPackage().getName() + "." + fileName;
+		String packagePath = "io.gazelle.dto";
 		try {
 			scm.generate(codeModel, className, packagePath, sampleJson.toURI().toURL());
 			File output = new File("target/generated-classes");

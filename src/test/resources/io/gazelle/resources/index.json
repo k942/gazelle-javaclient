@@ -1,0 +1,117 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://jsonschema.net",
+	"type": "object",
+	"properties": 
+	{
+		"username": 
+		{
+			"id": "http://jsonschema.net/username",
+			"type": "string"
+		},
+
+		"id": 
+		{
+			"id": "http://jsonschema.net/id",
+			"type": "integer"
+		},
+
+		"authkey": 
+		{
+			"id": "http://jsonschema.net/authkey",
+			"type": "string"
+		},
+
+		"passkey": 
+		{
+			"id": "http://jsonschema.net/passkey",
+			"type": "string"
+		},
+
+		"notifications": 
+		{
+			"id": "http://jsonschema.net/notifications",
+			"type": "object",
+			"properties": 
+			{
+				"messages": 
+				{
+					"id": "http://jsonschema.net/notifications/messages",
+					"type": "integer"
+				},
+
+				"notifications": 
+				{
+					"id": "http://jsonschema.net/notifications/notifications",
+					"type": "integer"
+				},
+
+				"newAnnouncement": 
+				{
+					"id": "http://jsonschema.net/notifications/newAnnouncement",
+					"type": "boolean"
+				},
+
+				"newSubscriptions": 
+				{
+					"id": "http://jsonschema.net/notifications/newAnnouncement",
+					"type": "boolean"
+				},
+
+				"newBlog": 
+				{
+					"id": "http://jsonschema.net/notifications/newBlog",
+					"type": "boolean"
+				}
+			}
+		},
+
+		"userstats": 
+		{
+			"id": "http://jsonschema.net/userstats",
+			"type": "object",
+			"properties": 
+			{
+				"uploaded": 
+				{
+					"id": "http://jsonschema.net/userstats/uploaded",
+					"type": "integer"
+				},
+
+				"downloaded": 
+				{
+					"id": "http://jsonschema.net/userstats/downloaded",
+					"type": "integer"
+				},
+
+				"ratio": 
+				{
+					"id": "http://jsonschema.net/userstats/ratio",
+					"type": "number"
+				},
+
+				"requiredratio": 
+				{
+					"id": "http://jsonschema.net/userstats/requiredratio",
+					"type": "number"
+				},
+
+				"class": 
+				{
+					"id": "http://jsonschema.net/userstats/class",
+					"type": "string"
+				}
+			}
+		}
+	},
+
+	"required": 
+	[
+		"username",
+		"id",
+		"authkey",
+		"passkey",
+		"notifications",
+		"userstats"
+	]
+}

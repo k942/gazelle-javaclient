@@ -1,0 +1,111 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://jsonschema.net",
+	"type": "object",
+	"properties": 
+	{
+		"currentPage": 
+		{
+			"id": "http://jsonschema.net/currentPage",
+			"type": "integer"
+		},
+
+		"pages": 
+		{
+			"id": "http://jsonschema.net/pages",
+			"type": "integer"
+		},
+
+		"messages": 
+		{
+			"id": "http://jsonschema.net/messages",
+			"type": "array",
+			"items": 
+			{
+				"id": "http://jsonschema.net/messages/0",
+				"type": "object",
+				"properties": 
+				{
+					"convId": 
+					{
+						"id": "http://jsonschema.net/messages/0/convId",
+						"type": "integer"
+					},
+
+					"subject": 
+					{
+						"id": "http://jsonschema.net/messages/0/subject",
+						"type": "string"
+					},
+
+					"unread": 
+					{
+						"id": "http://jsonschema.net/messages/0/unread",
+						"type": "boolean"
+					},
+
+					"sticky": 
+					{
+						"id": "http://jsonschema.net/messages/0/sticky",
+						"type": "boolean"
+					},
+
+					"forwardedId": 
+					{
+						"id": "http://jsonschema.net/messages/0/forwardedId",
+						"type": "integer"
+					},
+
+					"forwardedName": 
+					{
+						"id": "http://jsonschema.net/messages/0/forwardedName",
+						"type": "string"
+					},
+
+					"senderId": 
+					{
+						"id": "http://jsonschema.net/messages/0/senderId",
+						"type": "integer"
+					},
+
+					"username": 
+					{
+						"id": "http://jsonschema.net/messages/0/username",
+						"type": "string"
+					},
+
+					"donor": 
+					{
+						"id": "http://jsonschema.net/messages/0/donor",
+						"type": "boolean"
+					},
+
+					"warned": 
+					{
+						"id": "http://jsonschema.net/messages/0/warned",
+						"type": "boolean"
+					},
+
+					"enabled": 
+					{
+						"id": "http://jsonschema.net/messages/0/enabled",
+						"type": "boolean"
+					},
+
+					"date": 
+					{
+						"id": "http://jsonschema.net/messages/0/date",
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+
+	"required": 
+	[
+		"currentPage",
+		"pages",
+		"messages"
+	]
+}

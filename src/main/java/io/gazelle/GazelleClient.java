@@ -1,13 +1,16 @@
 package io.gazelle;
 
-import io.gazelle.policies.WhatcdRequestPolicy;
+import io.gazelle.policies.Policy;
+import io.gazelle.resources.GazelleResources;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.HttpCookie;
 import java.net.URI;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -37,9 +40,13 @@ public class GazelleClient {
 	private CookieManager cookieManager = new CookieManager();
 	private Optional<HttpCookie> sessionCookie = Optional.empty();
 
+	private Set<Policy> policies = new HashSet<>();
+
+	private GazelleResources resources;
+
 	private WebTarget baseTarget;
 	private WebTarget loginTarget;
-	private WebTarget apiTarget;
+	private WebTarget ajaxTarget;
 
 	private GazelleClient() {
 		// Use factory
@@ -49,8 +56,11 @@ public class GazelleClient {
 	public void setupTargets() {
 		baseTarget = client.target(gazelleUrl);
 		loginTarget = baseTarget.path("login.php");
-		apiTarget = baseTarget.path("ajax.php");
-		apiTarget.register(new GazelleResponseFilter(objectMapper));
+		ajaxTarget = baseTarget.path("ajax.php");
+		ajaxTarget.register(new GazelleResponseFilter(objectMapper));
+
+		resources = GazelleResources.newInstance(this, ajaxTarget);
+
 	}
 
 	public static GazelleClient newInstance(String gazelleUrl, String username, String password) {
@@ -64,6 +74,10 @@ public class GazelleClient {
 
 	public void close() {
 		client.close();
+	}
+
+	public void enforce(Policy policy) {
+		policies.add(policy);
 	}
 
 	private void login() {
@@ -90,14 +104,13 @@ public class GazelleClient {
 		}
 	}
 
-	public <T> T request(String action, Class<T> responseType) {
-		ensureLogin();
-		WebTarget target = apiTarget.queryParam("action", action);
-		return request(target, responseType);
+	public WebTarget action(String action) {
+		return ajaxTarget.queryParam("action", action);
 	}
 
-	private <T> T request(WebTarget target, Class<T> responseType) {
-		WhatcdRequestPolicy.INSTANCE.enforce();
+	public <T> T get(WebTarget target, Class<T> responseType) {
+		ensureLogin();
+		policies.forEach(p -> p.enforce());
 		return target.request(MediaType.APPLICATION_JSON_TYPE).cookie(Cookie.valueOf(sessionCookie.get().getValue()))
 				.get(responseType);
 
@@ -125,6 +138,13 @@ public class GazelleClient {
 
 	public void setGazelleUrl(String gazelleUrl) {
 		this.gazelleUrl = gazelleUrl;
+	}
+
+	/**
+	 * @return the resources
+	 */
+	public GazelleResources getResources() {
+		return resources;
 	}
 
 }

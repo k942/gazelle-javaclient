@@ -30,6 +30,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>uk.co.jemos.podam</groupId>
+			<artifactId>podam</artifactId>
+			<version>5.2.0.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
 			<artifactId>jersey-test-framework-provider-grizzly2</artifactId>
 			<version>2.17</version>
@@ -40,6 +45,12 @@
 			<artifactId>jersey-test-framework-provider-jetty</artifactId>
 			<version>2.17</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.19.0-GA</version>
+			<scope>tests</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jsonschema2pojo</groupId>
@@ -71,6 +82,11 @@
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
 			<version>2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.pojomatic</groupId>
+			<artifactId>pojomatic</artifactId>
+			<version>2.0.1</version>
 		</dependency>
 	</dependencies>
 </project>

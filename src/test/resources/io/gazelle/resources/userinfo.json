@@ -1,0 +1,279 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://jsonschema.net",
+	"type": "object",
+	"properties": 
+	{
+		"username": 
+		{
+			"id": "http://jsonschema.net/username",
+			"type": "string"
+		},
+
+		"avatar": 
+		{
+			"id": "http://jsonschema.net/avatar",
+			"type": "string"
+		},
+
+		"isFriend": 
+		{
+			"id": "http://jsonschema.net/isFriend",
+			"type": "boolean"
+		},
+
+		"profileText": 
+		{
+			"id": "http://jsonschema.net/profileText",
+			"type": "string"
+		},
+
+		"stats": 
+		{
+			"id": "http://jsonschema.net/stats",
+			"type": "object",
+			"properties": 
+			{
+				"joinedDate": 
+				{
+					"id": "http://jsonschema.net/stats/joinedDate",
+					"type": "string"
+				},
+
+				"lastAccess": 
+				{
+					"id": "http://jsonschema.net/stats/lastAccess",
+					"type": "string"
+				},
+
+				"uploaded": 
+				{
+					"id": "http://jsonschema.net/stats/uploaded",
+					"type": "integer"
+				},
+
+				"downloaded": 
+				{
+					"id": "http://jsonschema.net/stats/downloaded",
+					"type": "integer"
+				},
+
+				"ratio": 
+				{
+					"id": "http://jsonschema.net/stats/ratio",
+					"type": "number"
+				},
+
+				"requiredRatio": 
+				{
+					"id": "http://jsonschema.net/stats/requiredRatio",
+					"type": "number"
+				}
+			}
+		},
+
+		"ranks": 
+		{
+			"id": "http://jsonschema.net/ranks",
+			"type": "object",
+			"properties": 
+			{
+				"uploaded": 
+				{
+					"id": "http://jsonschema.net/ranks/uploaded",
+					"type": "integer"
+				},
+
+				"downloaded": 
+				{
+					"id": "http://jsonschema.net/ranks/downloaded",
+					"type": "integer"
+				},
+
+				"uploads": 
+				{
+					"id": "http://jsonschema.net/ranks/uploads",
+					"type": "integer"
+				},
+
+				"requests": 
+				{
+					"id": "http://jsonschema.net/ranks/requests",
+					"type": "integer"
+				},
+
+				"bounty": 
+				{
+					"id": "http://jsonschema.net/ranks/bounty",
+					"type": "integer"
+				},
+
+				"posts": 
+				{
+					"id": "http://jsonschema.net/ranks/posts",
+					"type": "integer"
+				},
+
+				"artists": 
+				{
+					"id": "http://jsonschema.net/ranks/artists",
+					"type": "integer"
+				},
+
+				"overall": 
+				{
+					"id": "http://jsonschema.net/ranks/overall",
+					"type": "integer"
+				}
+			}
+		},
+
+		"personal": 
+		{
+			"id": "http://jsonschema.net/personal",
+			"type": "object",
+			"properties": 
+			{
+				"class": 
+				{
+					"id": "http://jsonschema.net/personal/class",
+					"type": "string"
+				},
+
+				"paranoia": 
+				{
+					"id": "http://jsonschema.net/personal/paranoia",
+					"type": "integer"
+				},
+
+				"paranoiaText": 
+				{
+					"id": "http://jsonschema.net/personal/paranoiaText",
+					"type": "string"
+				},
+
+				"donor": 
+				{
+					"id": "http://jsonschema.net/personal/donor",
+					"type": "boolean"
+				},
+
+				"warned": 
+				{
+					"id": "http://jsonschema.net/personal/warned",
+					"type": "boolean"
+				},
+
+				"enabled": 
+				{
+					"id": "http://jsonschema.net/personal/enabled",
+					"type": "boolean"
+				},
+
+				"passkey": 
+				{
+					"id": "http://jsonschema.net/personal/passkey",
+					"type": "string"
+				}
+			}
+		},
+
+		"community": 
+		{
+			"id": "http://jsonschema.net/community",
+			"type": "object",
+			"properties": 
+			{
+				"posts": 
+				{
+					"id": "http://jsonschema.net/community/posts",
+					"type": "integer"
+				},
+
+				"torrentComments": 
+				{
+					"id": "http://jsonschema.net/community/torrentComments",
+					"type": "integer"
+				},
+
+				"collagesStarted": 
+				{
+					"id": "http://jsonschema.net/community/collagesStarted",
+					"type": "integer"
+				},
+
+				"collagesContrib": 
+				{
+					"id": "http://jsonschema.net/community/collagesContrib",
+					"type": "integer"
+				},
+
+				"requestsFilled": 
+				{
+					"id": "http://jsonschema.net/community/requestsFilled",
+					"type": "integer"
+				},
+
+				"requestsVoted": 
+				{
+					"id": "http://jsonschema.net/community/requestsVoted",
+					"type": "integer"
+				},
+
+				"perfectFlacs": 
+				{
+					"id": "http://jsonschema.net/community/perfectFlacs",
+					"type": "integer"
+				},
+
+				"uploaded": 
+				{
+					"id": "http://jsonschema.net/community/uploaded",
+					"type": "integer"
+				},
+
+				"groups": 
+				{
+					"id": "http://jsonschema.net/community/groups",
+					"type": "integer"
+				},
+
+				"seeding": 
+				{
+					"id": "http://jsonschema.net/community/seeding",
+					"type": "integer"
+				},
+
+				"leeching": 
+				{
+					"id": "http://jsonschema.net/community/leeching",
+					"type": "integer"
+				},
+
+				"snatched": 
+				{
+					"id": "http://jsonschema.net/community/snatched",
+					"type": "integer"
+				},
+
+				"invited": 
+				{
+					"id": "http://jsonschema.net/community/invited",
+					"type": "integer"
+				}
+			}
+		}
+	},
+
+	"required": 
+	[
+		"username",
+		"avatar",
+		"isFriend",
+		"profileText",
+		"stats",
+		"ranks",
+		"personal",
+		"community"
+	]
+}

@@ -1,0 +1,83 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://jsonschema.net",
+	"type": "object",
+	"properties": 
+	{
+		"convId": 
+		{
+			"id": "http://jsonschema.net/convId",
+			"type": "integer"
+		},
+
+		"subject": 
+		{
+			"id": "http://jsonschema.net/subject",
+			"type": "string"
+		},
+
+		"sticky": 
+		{
+			"id": "http://jsonschema.net/sticky",
+			"type": "boolean"
+		},
+
+		"messages": 
+		{
+			"id": "http://jsonschema.net/messages",
+			"type": "array",
+			"items": 
+			{
+				"javaTypeName": "ConversationMessages",
+				"id": "http://jsonschema.net/messages/0",
+				"type": "object",
+				"properties": 
+				{
+					"messageId": 
+					{
+						"id": "http://jsonschema.net/messages/0/messageId",
+						"type": "integer"
+					},
+
+					"senderId": 
+					{
+						"id": "http://jsonschema.net/messages/0/senderId",
+						"type": "integer"
+					},
+
+					"senderName": 
+					{
+						"id": "http://jsonschema.net/messages/0/senderName",
+						"type": "string"
+					},
+
+					"sentDate": 
+					{
+						"id": "http://jsonschema.net/messages/0/sentDate",
+						"type": "string"
+					},
+
+					"bbBody": 
+					{
+						"id": "http://jsonschema.net/messages/0/bbBody",
+						"type": "string"
+					},
+
+					"body": 
+					{
+						"id": "http://jsonschema.net/messages/0/body",
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+
+	"required": 
+	[
+		"convId",
+		"subject",
+		"sticky",
+		"messages"
+	]
+}

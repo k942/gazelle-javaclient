@@ -16,9 +16,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Provider
 public class GazelleResponseFilter implements ClientResponseFilter {
-	
+
 	private ObjectMapper objectMapper;
-	
+
 	public GazelleResponseFilter(ObjectMapper objectMapper) {
 		this.objectMapper = objectMapper;
 	}
@@ -29,7 +29,7 @@ public class GazelleResponseFilter implements ClientResponseFilter {
 		try {
 			node = objectMapper.readTree(entity);
 			if (!node.get("status").asText().equals("success")) {
-				throw new RuntimeException("Failure");
+				throw new RuntimeException(node.asText());
 			}
 			String ads = node.get("response").toString();
 			InputStream is = IOUtils.toInputStream(ads, StandardCharsets.UTF_8);
