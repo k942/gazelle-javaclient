@@ -34,23 +34,23 @@ public class GazelleResources {
 	/**
 	 * @return the indexResource
 	 */
-	public IndexResource getIndexResource() {
+	public IndexResource index() {
 		return indexResource;
 	}
 
-	public UserProfileResource getUserProfileResource() {
+	public UserProfileResource userProfile() {
 		return userProfileResource;
 	}
 
-	public MessagesResource getMessagesResource() {
+	public MessagesResource messages() {
 		return messagesResource;
 	}
 
-	public TopResource getTopResource() {
+	public TopResource top() {
 		return topResource;
 	}
 
-	public ConversationResource getConversationResource() {
+	public ConversationResource conversations() {
 		return conversationResource;
 	}
 

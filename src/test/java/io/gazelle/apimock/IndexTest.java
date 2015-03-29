@@ -15,7 +15,7 @@ public class IndexTest extends GazelleTest {
 	public void testIndex() throws MalformedURLException {
 		GazelleClient client = GazelleClient.newInstance(getGazelleURL(), LoginResource.CORRECT_USERNAME,
 				LoginResource.CORRECT_PASSWORD);
-		Index index = client.getResources().getIndexResource().get();
+		Index index = client.getResources().index().get();
 		Assert.assertEquals(dtoProvider.getInstance(Index.class), index);
 	}
 

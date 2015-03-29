@@ -29,7 +29,7 @@ public class GazelleResponseFilter implements ClientResponseFilter {
 		try {
 			node = objectMapper.readTree(entity);
 			if (!node.get("status").asText().equals("success")) {
-				throw new RuntimeException(node.asText());
+				throw new RuntimeException(requestContext.getUri() + " / " +node.asText());
 			}
 			String ads = node.get("response").toString();
 			
