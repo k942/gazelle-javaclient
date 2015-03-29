@@ -27,7 +27,7 @@ String username = "User";
 String password = "Password";
 
 // Setup a client
-GazelleClient gClient = GazelleClient.newInstance(WCD, username, password);
+GazelleClient gClient = GazelleClient.newInstance(gazelleUrl, username, password);
 gClient.enforce(WhatcdRequestPolicy.INSTANCE);
 
 // Retrieve the entry point to access resources
