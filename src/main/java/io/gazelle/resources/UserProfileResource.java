@@ -15,7 +15,7 @@ public class UserProfileResource {
 		this.target = parentTarget.queryParam("action", "user");
 	}
 
-	public Userprofile get(Long id) {	
+	public Userprofile get(Long id) {
 		return client.get(target.queryParam("id", id), Userprofile.class);
 	}
 }

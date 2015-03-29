@@ -29,10 +29,10 @@ public class GazelleResponseFilter implements ClientResponseFilter {
 		try {
 			node = objectMapper.readTree(entity);
 			if (!node.get("status").asText().equals("success")) {
-				throw new RuntimeException(requestContext.getUri() + " / " +node.asText());
+				throw new RuntimeException(requestContext.getUri() + " / " + node.asText());
 			}
 			String ads = node.get("response").toString();
-			
+
 			if (node.get("response").isArray()) {
 				ads = node.toString();
 			}
@@ -41,13 +41,12 @@ public class GazelleResponseFilter implements ClientResponseFilter {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		
 
-        String contentType = responseContext.getHeaders().getFirst("Content-Type");
-        if (contentType.startsWith("text/plain")) {
-             String newContentType = "application/json" + contentType.substring(10);
-             responseContext.getHeaders().putSingle("Content-Type", newContentType);
-        }
+		String contentType = responseContext.getHeaders().getFirst("Content-Type");
+		if (contentType.startsWith("text/plain")) {
+			String newContentType = "application/json" + contentType.substring(10);
+			responseContext.getHeaders().putSingle("Content-Type", newContentType);
+		}
 
 	}
 }

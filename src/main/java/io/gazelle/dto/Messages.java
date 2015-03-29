@@ -1,4 +1,3 @@
-
 package io.gazelle.dto;
 
 import java.util.ArrayList;
@@ -19,110 +18,103 @@ import uk.co.jemos.podam.common.PodamCollection;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @AutoProperty
-@JsonPropertyOrder({
-    "currentPage",
-    "pages",
-    "messages"
-})
+@JsonPropertyOrder({"currentPage", "pages", "messages"})
 public class Messages {
 
-    @JsonProperty("currentPage")
-    private Long currentPage;
-    @JsonProperty("pages")
-    private Long pages;
-    @JsonProperty("messages")
-    private List<Message> messages = new ArrayList<Message>();
-    @JsonIgnore
-    @PodamCollection(nbrElements = 2, mapElementStrategy = io.gazelle.utils.GazellePodamStrategy.class)
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	@JsonProperty("currentPage")
+	private Long currentPage;
+	@JsonProperty("pages")
+	private Long pages;
+	@JsonProperty("messages")
+	private List<Message> messages = new ArrayList<Message>();
+	@JsonIgnore
+	@PodamCollection(nbrElements = 2, mapElementStrategy = io.gazelle.utils.GazellePodamStrategy.class)
+	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * 
-     * @return
-     *     The currentPage
-     */
-    @JsonProperty("currentPage")
-    public Long getCurrentPage() {
-        return currentPage;
-    }
+	/**
+	 * 
+	 * @return The currentPage
+	 */
+	@JsonProperty("currentPage")
+	public Long getCurrentPage() {
+		return currentPage;
+	}
 
-    /**
-     * 
-     * @param currentPage
-     *     The currentPage
-     */
-    @JsonProperty("currentPage")
-    public void setCurrentPage(Long currentPage) {
-        this.currentPage = currentPage;
-    }
+	/**
+	 * 
+	 * @param currentPage
+	 *            The currentPage
+	 */
+	@JsonProperty("currentPage")
+	public void setCurrentPage(Long currentPage) {
+		this.currentPage = currentPage;
+	}
 
-    /**
-     * 
-     * @return
-     *     The pages
-     */
-    @JsonProperty("pages")
-    public Long getPages() {
-        return pages;
-    }
+	/**
+	 * 
+	 * @return The pages
+	 */
+	@JsonProperty("pages")
+	public Long getPages() {
+		return pages;
+	}
 
-    /**
-     * 
-     * @param pages
-     *     The pages
-     */
-    @JsonProperty("pages")
-    public void setPages(Long pages) {
-        this.pages = pages;
-    }
+	/**
+	 * 
+	 * @param pages
+	 *            The pages
+	 */
+	@JsonProperty("pages")
+	public void setPages(Long pages) {
+		this.pages = pages;
+	}
 
-    /**
-     * 
-     * @return
-     *     The messages
-     */
-    @JsonProperty("messages")
-    public List<Message> getMessages() {
-        return messages;
-    }
+	/**
+	 * 
+	 * @return The messages
+	 */
+	@JsonProperty("messages")
+	public List<Message> getMessages() {
+		return messages;
+	}
 
-    /**
-     * 
-     * @param messages
-     *     The messages
-     */
-    @JsonProperty("messages")
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
+	/**
+	 * 
+	 * @param messages
+	 *            The messages
+	 */
+	@JsonProperty("messages")
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
+	@JsonAnyGetter
+	public Map<String, Object> getAdditionalProperties() {
+		return this.additionalProperties;
+	}
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+	@JsonAnySetter
+	public void setAdditionalProperty(String name, Object value) {
+		this.additionalProperties.put(name, value);
+	}
 
-    public void setAdditionalProperties(Map<String, Object> additionalProperties) {
-        this.additionalProperties = additionalProperties;
-    }
+	public void setAdditionalProperties(Map<String, Object> additionalProperties) {
+		this.additionalProperties = additionalProperties;
+	}
 
-    @Override
-    public String toString() {
-        return Pojomatic.toString(this);
-    }
+	@Override
+	public String toString() {
+		return Pojomatic.toString(this);
+	}
 
-    @Override
-    public int hashCode() {
-        return Pojomatic.hashCode(this);
-    }
+	@Override
+	public int hashCode() {
+		return Pojomatic.hashCode(this);
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        return Pojomatic.equals(this, o);
-    }
+	@Override
+	public boolean equals(Object o) {
+		return Pojomatic.equals(this, o);
+	}
 
 }

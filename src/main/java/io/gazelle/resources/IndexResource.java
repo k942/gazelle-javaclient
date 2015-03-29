@@ -15,7 +15,7 @@ public class IndexResource {
 		this.target = parentTarget.queryParam("action", "index");
 	}
 
-	public Index get() {	
+	public Index get() {
 		return client.get(target, Index.class);
 	}
 }
