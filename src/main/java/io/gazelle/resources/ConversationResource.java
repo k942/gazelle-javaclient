@@ -1,7 +1,7 @@
 package io.gazelle.resources;
 
 import io.gazelle.GazelleClient;
-import io.gazelle.dto.ConversationMessages;
+import io.gazelle.dto.Conversation;
 
 import javax.ws.rs.client.WebTarget;
 
@@ -15,7 +15,7 @@ public class ConversationResource {
 		this.target = parentTarget.queryParam("action", "inbox").queryParam("type", "viewconv");
 	}
 
-	public ConversationMessages get(Long id) {
-		return client.get(target.queryParam("id", id), ConversationMessages.class);
+	public Conversation get(Long id) {
+		return client.get(target.queryParam("id", id), Conversation.class);
 	}
 }
