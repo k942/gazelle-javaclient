@@ -26,33 +26,35 @@ String gazelleUrl = "https://ssl.foo.de";
 String username = "User";
 String password = "Password";
 
-// Setup a client with the "no more than 5 request per 10 seconds" enforced
+// Setup a client
 GazelleClient gClient = GazelleClient.newInstance(WCD, username, password);
 gClient.enforce(WhatcdRequestPolicy.INSTANCE);
 
 // Retrieve the entry point to access resources
-GazelleResources gResources = gClient.getResources();
+GazelleResources gazlRsrc = gClient.getResources();
 
 // Index
-Index idx = gResources.getIndexResource().get();
+Index idx = gazlRsrc.index().get();
 
 // User profile
-Userprofile userProfile = gResources.getUserProfileResource().get(idx.getId());
+Userprofile userProfile = gazlRsrc.userProfile().get(idx.getId());
 
 // Messages
-Messages messages = gResources.getMessagesResource().get();
+Messages messages = gazlRsrc.messages().get();
 
-MessagesResourceArgs msgArgs = new MessagesResourceArgs().setType(BoxType.SENTBOX).setSort(SortType.UNREAD_FIRST);
-Messages messagesSentBox = gResources.getMessagesResource().get(msgArgs);
+MessagesResourceArgs msgArgs = new MessagesResourceArgs().setType(BoxType.SENTBOX)
+      .setSort(SortType.UNREAD_FIRST);
+Messages messagesSentBox = gazlRsrc.messages().get(msgArgs);
 
 // Conversation
 Long convId = messagesSentBox.getMessages().stream().findFirst().get().getConvId();
-Messages convMsg = gResources.getConversationResource().get(convId);
+ConversationMessages convMsg = gazlRsrc.conversations().get(convId);
 
 // Top listing
-List<TopCategory<TopTorrentsResult>> top10torrent = gResources.getTopResource().getTorrents(10);
-List<TopCategory<TopTagsResult>> top10tags = gResources.getTopResource().getTags(10);
-List<TopCategory<TopUsersResult>> top10users = gResources.getTopResource().getUsers(10);
+List<TopCategory<TopTorrentsResult>> top10torrent = gazlRsrc.top().getTorrents(10);
+List<TopCategory<TopTagsResult>> top10tags = gazlRsrc.top().getTags(10);
+List<TopCategory<TopUsersResult>> top10users = gazlRsrc.top().getUsers(10);
+
 ```
 
 ## Comparison with others Gazelle Java implementations
