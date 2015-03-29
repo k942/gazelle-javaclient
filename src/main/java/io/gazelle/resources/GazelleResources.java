@@ -8,6 +8,10 @@ public class GazelleResources {
 
 	private GazelleClient client;
 	private IndexResource indexResource;
+	private UserProfileResource userProfileResource;
+	private MessagesResource messagesResource;
+	private ConversationResource conversationResource;
+	private TopResource topResource;
 
 	private GazelleResources(GazelleClient client, WebTarget baseTarget) {
 		this.client = client;
@@ -21,6 +25,10 @@ public class GazelleResources {
 
 	private void setupResources(WebTarget baseTarget) {
 		this.indexResource = new IndexResource(this.client, baseTarget);
+		this.userProfileResource = new UserProfileResource(this.client, baseTarget);
+		this.messagesResource = new MessagesResource(this.client, baseTarget);
+		this.conversationResource = new ConversationResource(this.client, baseTarget);
+		this.topResource = new TopResource(this.client, baseTarget);
 	}
 
 	/**
@@ -28,6 +36,22 @@ public class GazelleResources {
 	 */
 	public IndexResource getIndexResource() {
 		return indexResource;
+	}
+
+	public UserProfileResource getUserProfileResource() {
+		return userProfileResource;
+	}
+
+	public MessagesResource getMessagesResource() {
+		return messagesResource;
+	}
+
+	public TopResource getTopResource() {
+		return topResource;
+	}
+
+	public ConversationResource getConversationResource() {
+		return conversationResource;
 	}
 
 }

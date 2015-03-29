@@ -1,0 +1,39 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://jsonschema.net",
+	"type": "object",
+	"properties": 
+	{
+		"name": 
+		{
+			"id": "http://jsonschema.net/name",
+			"type": "string"
+		},
+
+		"uses": 
+		{
+			"id": "http://jsonschema.net/uses",
+			"type": "integer"
+		},
+
+		"posVotes": 
+		{
+			"id": "http://jsonschema.net/posVotes",
+			"type": "integer"
+		},
+
+		"negVotes": 
+		{
+			"id": "http://jsonschema.net/negVotes",
+			"type": "integer"
+		}
+	},
+
+	"required": 
+	[
+		"name",
+		"uses",
+		"posVotes",
+		"negVotes"
+	]
+}

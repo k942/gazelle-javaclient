@@ -1,0 +1,127 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://jsonschema.net/5/results/0",
+	"javaTypeName": "TopTorrentsResult",
+	"type": "object",
+	"properties": 
+	{
+		"torrentId": 
+		{
+			"id": "http://jsonschema.net/5/results/0/torrentId",
+			"type": "integer"
+		},
+
+		"groupId": 
+		{
+			"id": "http://jsonschema.net/5/results/0/groupId",
+			"type": "integer"
+		},
+
+		"artist": 
+		{
+			"id": "http://jsonschema.net/5/results/0/artist",
+			"type": "string"
+		},
+
+		"groupName": 
+		{
+			"id": "http://jsonschema.net/5/results/0/groupName",
+			"type": "string"
+		},
+
+		"groupCategory": 
+		{
+			"id": "http://jsonschema.net/5/results/0/groupCategory",
+			"type": "integer"
+		},
+
+		"groupYear": 
+		{
+			"id": "http://jsonschema.net/5/results/0/groupYear",
+			"type": "integer"
+		},
+
+		"remasterTitle": 
+		{
+			"id": "http://jsonschema.net/5/results/0/remasterTitle",
+			"type": "string"
+		},
+
+		"format": 
+		{
+			"id": "http://jsonschema.net/5/results/0/format",
+			"type": "string"
+		},
+
+		"encoding": 
+		{
+			"id": "http://jsonschema.net/5/results/0/encoding",
+			"type": "string"
+		},
+
+		"hasLog": 
+		{
+			"id": "http://jsonschema.net/5/results/0/hasLog",
+			"type": "boolean"
+		},
+
+		"hasCue": 
+		{
+			"id": "http://jsonschema.net/5/results/0/hasCue",
+			"type": "boolean"
+		},
+
+		"media": 
+		{
+			"id": "http://jsonschema.net/5/results/0/media",
+			"type": "string"
+		},
+
+		"scene": 
+		{
+			"id": "http://jsonschema.net/5/results/0/scene",
+			"type": "boolean"
+		},
+
+		"year": 
+		{
+			"id": "http://jsonschema.net/5/results/0/year",
+			"type": "integer"
+		},
+
+		"tags": 
+		{
+			"id": "http://jsonschema.net/5/results/0/tags",
+			"type": "array",
+			"items": 
+			{
+				"id": "http://jsonschema.net/5/results/0/tags/3",
+				"type": "string"
+			}
+		},
+
+		"snatched": 
+		{
+			"id": "http://jsonschema.net/5/results/0/snatched",
+			"type": "integer"
+		},
+
+		"seeders": 
+		{
+			"id": "http://jsonschema.net/5/results/0/seeders",
+			"type": "integer"
+		},
+
+		"leechers": 
+		{
+			"id": "http://jsonschema.net/5/results/0/leechers",
+			"type": "integer"
+		},
+
+		"data": 
+		{
+			"id": "http://jsonschema.net/5/results/0/data",
+			"type": "integer"
+		}
+	}
+}

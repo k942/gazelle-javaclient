@@ -1,0 +1,67 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://jsonschema.net",
+	"type": "object",
+	"properties": 
+	{
+		"id": 
+		{
+			"id": "http://jsonschema.net/id",
+			"type": "integer"
+		},
+
+		"username": 
+		{
+			"id": "http://jsonschema.net/username",
+			"type": "null"
+		},
+
+		"uploaded": 
+		{
+			"id": "http://jsonschema.net/uploaded",
+			"type": "integer"
+		},
+
+		"upSpeed": 
+		{
+			"id": "http://jsonschema.net/upSpeed",
+			"type": "number"
+		},
+
+		"downloaded": 
+		{
+			"id": "http://jsonschema.net/downloaded",
+			"type": "integer"
+		},
+
+		"downSpeed": 
+		{
+			"id": "http://jsonschema.net/downSpeed",
+			"type": "number"
+		},
+
+		"numUploads": 
+		{
+			"id": "http://jsonschema.net/numUploads",
+			"type": "integer"
+		},
+
+		"joinDate": 
+		{
+			"id": "http://jsonschema.net/joinDate",
+			"type": "string"
+		}
+	},
+
+	"required": 
+	[
+		"id",
+		"username",
+		"uploaded",
+		"upSpeed",
+		"downloaded",
+		"downSpeed",
+		"numUploads",
+		"joinDate"
+	]
+}

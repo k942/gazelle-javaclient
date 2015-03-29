@@ -40,7 +40,7 @@ import uk.co.jemos.podam.common.PodamCollection;
     "leechers",
     "data"
 })
-public class Top10Result {
+public class TopTorrentsResult {
 
     @JsonProperty("torrentId")
     private Long torrentId;

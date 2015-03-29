@@ -27,7 +27,7 @@ import uk.co.jemos.podam.common.PodamCollection;
     "personal",
     "community"
 })
-public class Userinfo {
+public class Userprofile {
 
     @JsonProperty("username")
     private String username;

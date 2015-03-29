@@ -32,11 +32,22 @@ public class GazelleResponseFilter implements ClientResponseFilter {
 				throw new RuntimeException(node.asText());
 			}
 			String ads = node.get("response").toString();
+			
+			if (node.get("response").isArray()) {
+				ads = node.toString();
+			}
 			InputStream is = IOUtils.toInputStream(ads, StandardCharsets.UTF_8);
 			responseContext.setEntityStream(is);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+		
+
+        String contentType = responseContext.getHeaders().getFirst("Content-Type");
+        if (contentType.startsWith("text/plain")) {
+             String newContentType = "application/json" + contentType.substring(10);
+             responseContext.getHeaders().putSingle("Content-Type", newContentType);
+        }
 
 	}
 }

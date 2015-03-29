@@ -1,9 +1,7 @@
 
 package io.gazelle.dto;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -20,21 +18,21 @@ import uk.co.jemos.podam.common.PodamCollection;
 @Generated("org.jsonschema2pojo")
 @AutoProperty
 @JsonPropertyOrder({
-    "caption",
-    "tag",
-    "limit",
-    "results"
+    "name",
+    "uses",
+    "posVotes",
+    "negVotes"
 })
-public class Top10 {
+public class TopTagsResult {
 
-    @JsonProperty("caption")
-    private String caption;
-    @JsonProperty("tag")
-    private String tag;
-    @JsonProperty("limit")
-    private Long limit;
-    @JsonProperty("results")
-    private List<Top10Result> results = new ArrayList<Top10Result>();
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("uses")
+    private Long uses;
+    @JsonProperty("posVotes")
+    private Long posVotes;
+    @JsonProperty("negVotes")
+    private Long negVotes;
     @JsonIgnore
     @PodamCollection(nbrElements = 2, mapElementStrategy = io.gazelle.utils.GazellePodamStrategy.class)
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -42,81 +40,81 @@ public class Top10 {
     /**
      * 
      * @return
-     *     The caption
+     *     The name
      */
-    @JsonProperty("caption")
-    public String getCaption() {
-        return caption;
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
     /**
      * 
-     * @param caption
-     *     The caption
+     * @param name
+     *     The name
      */
-    @JsonProperty("caption")
-    public void setCaption(String caption) {
-        this.caption = caption;
-    }
-
-    /**
-     * 
-     * @return
-     *     The tag
-     */
-    @JsonProperty("tag")
-    public String getTag() {
-        return tag;
-    }
-
-    /**
-     * 
-     * @param tag
-     *     The tag
-     */
-    @JsonProperty("tag")
-    public void setTag(String tag) {
-        this.tag = tag;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
      * 
      * @return
-     *     The limit
+     *     The uses
      */
-    @JsonProperty("limit")
-    public Long getLimit() {
-        return limit;
+    @JsonProperty("uses")
+    public Long getUses() {
+        return uses;
     }
 
     /**
      * 
-     * @param limit
-     *     The limit
+     * @param uses
+     *     The uses
      */
-    @JsonProperty("limit")
-    public void setLimit(Long limit) {
-        this.limit = limit;
+    @JsonProperty("uses")
+    public void setUses(Long uses) {
+        this.uses = uses;
     }
 
     /**
      * 
      * @return
-     *     The results
+     *     The posVotes
      */
-    @JsonProperty("results")
-    public List<Top10Result> getResults() {
-        return results;
+    @JsonProperty("posVotes")
+    public Long getPosVotes() {
+        return posVotes;
     }
 
     /**
      * 
-     * @param results
-     *     The results
+     * @param posVotes
+     *     The posVotes
      */
-    @JsonProperty("results")
-    public void setResults(List<Top10Result> results) {
-        this.results = results;
+    @JsonProperty("posVotes")
+    public void setPosVotes(Long posVotes) {
+        this.posVotes = posVotes;
+    }
+
+    /**
+     * 
+     * @return
+     *     The negVotes
+     */
+    @JsonProperty("negVotes")
+    public Long getNegVotes() {
+        return negVotes;
+    }
+
+    /**
+     * 
+     * @param negVotes
+     *     The negVotes
+     */
+    @JsonProperty("negVotes")
+    public void setNegVotes(Long negVotes) {
+        this.negVotes = negVotes;
     }
 
     @JsonAnyGetter
