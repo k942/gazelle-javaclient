@@ -42,8 +42,7 @@ Userprofile userProfile = gResources.getUserProfileResource().get(idx.getId());
 // Messages
 Messages messages = gResources.getMessagesResource().get();
 
-MessagesResourceArgs msgArgs = new MessagesResourceArgs().setType(BoxType.SENTBOX).setSort(
-		SortType.UNREAD_FIRST);
+MessagesResourceArgs msgArgs = new MessagesResourceArgs().setType(BoxType.SENTBOX).setSort(SortType.UNREAD_FIRST);
 Messages messagesSentBox = gResources.getMessagesResource().get(msgArgs);
 
 // Conversation
