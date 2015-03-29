@@ -26,13 +26,34 @@ String gazelleUrl = "https://ssl.foo.de";
 String username = "User";
 String password = "Password";
 
-GazelleClient gClient = GazelleClient.newInstance(gazelleUrl, username, password);
+// Setup a client with the "no more than 5 request per 10 seconds" enforced
+GazelleClient gClient = GazelleClient.newInstance(WCD, username, password);
+gClient.enforce(WhatcdRequestPolicy.INSTANCE);
 
-// The requests will pause a moment after the first five in order to enforce the limit
-for (int i = 0; i < 10; i++) {
-	Index idx = gClient.request("index", Index.class);
-	System.out.println(idx);
-}
+// Retrieve the entry point to access resources
+GazelleResources gResources = gClient.getResources();
+
+// Index
+Index idx = gResources.getIndexResource().get();
+
+// User profile
+Userprofile userProfile = gResources.getUserProfileResource().get(idx.getId());
+
+// Messages
+Messages messages = gResources.getMessagesResource().get();
+
+MessagesResourceArgs msgArgs = new MessagesResourceArgs().setType(BoxType.SENTBOX).setSort(
+		SortType.UNREAD_FIRST);
+Messages messagesSentBox = gResources.getMessagesResource().get(msgArgs);
+
+// Conversation
+Long convId = messagesSentBox.getMessages().stream().findFirst().get().getConvId();
+Messages convMsg = gResources.getConversationResource().get(convId);
+
+// Top listing
+List<TopCategory<TopTorrentsResult>> top10torrent = gResources.getTopResource().getTorrents(10);
+List<TopCategory<TopTagsResult>> top10tags = gResources.getTopResource().getTags(10);
+List<TopCategory<TopUsersResult>> top10users = gResources.getTopResource().getUsers(10);
 ```
 
 ## Comparison with others Gazelle Java implementations
