@@ -48,7 +48,7 @@ Messages messagesSentBox = gazlRsrc.messages().get(msgArgs);
 
 // Conversation
 Long convId = messagesSentBox.getMessages().stream().findFirst().get().getConvId();
-ConversationMessages convMsg = gazlRsrc.conversations().get(convId);
+Conversation convMsg = gazlRsrc.conversations().get(convId);
 
 // Top listing
 List<TopCategory<TopTorrentsResult>> top10torrent = gazlRsrc.top().getTorrents(10);
