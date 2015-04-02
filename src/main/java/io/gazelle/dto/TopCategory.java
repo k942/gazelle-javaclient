@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class TopCategory<T> {
 
 	private String caption;
-	private Number limit;
+	private Long limit;
 	private List<T> results;
 	private String tag;
 	@JsonIgnore
@@ -28,12 +28,42 @@ public class TopCategory<T> {
 		return this.caption;
 	}
 
-	public Number getLimit() {
+	public Long getLimit() {
 		return this.limit;
 	}
 
 	public List<T> getResults() {
 		return this.results;
+	}
+	
+	
+
+	/**
+	 * @param caption the caption to set
+	 */
+	public void setCaption(String caption) {
+		this.caption = caption;
+	}
+
+	/**
+	 * @param limit the limit to set
+	 */
+	public void setLimit(Long limit) {
+		this.limit = limit;
+	}
+
+	/**
+	 * @param results the results to set
+	 */
+	public void setResults(List<T> results) {
+		this.results = results;
+	}
+
+	/**
+	 * @param tag the tag to set
+	 */
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public String getTag() {

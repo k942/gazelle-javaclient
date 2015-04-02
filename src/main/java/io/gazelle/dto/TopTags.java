@@ -54,6 +54,29 @@ public class TopTags {
 		return response;
 	}
 
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status
+	 *            the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
+	 * @param response
+	 *            the response to set
+	 */
+	public void setResponse(List<TopCategory<TopTagsResult>> response) {
+		this.response = response;
+	}
+
 	@Override
 	public String toString() {
 		return Pojomatic.toString(this);

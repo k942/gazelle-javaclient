@@ -67,23 +67,7 @@ public class GazelleClient implements RESTClient {
 		Injector i = Guice.createInjector(new ResourceModule(this, ajaxTarget));
 		resources = i.getInstance(GazelleResources.class);
 	}
-
-	public static GazelleClient newInstance(String gazelleUrl, String username, String password) {
-		GazelleClient gClient = new GazelleClient();
-		gClient.setUsername(username);
-		gClient.setPassword(password);
-		gClient.setGazelleUrl(gazelleUrl);
-		return gClient;
-	}
-
-	public void close() {
-		client.close();
-	}
-
-	public void enforce(Policy policy) {
-		policies.add(policy);
-	}
-
+	
 	private void login() {
 		LOGGER.info("Logging on website: " + gazelleUrl);
 		Form form = new Form();
@@ -108,8 +92,20 @@ public class GazelleClient implements RESTClient {
 		}
 	}
 
-	public WebTarget action(String action) {
-		return ajaxTarget.queryParam("action", action);
+	public static GazelleClient newInstance(String gazelleUrl, String username, String password) {
+		GazelleClient gClient = new GazelleClient();
+		gClient.setUsername(username);
+		gClient.setPassword(password);
+		gClient.setGazelleUrl(gazelleUrl);
+		return gClient;
+	}
+
+	public void close() {
+		client.close();
+	}
+
+	public void enforce(Policy policy) {
+		policies.add(policy);
 	}
 
 	public <T> T get(WebTarget target, Class<T> responseType) {

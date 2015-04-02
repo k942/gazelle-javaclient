@@ -7,13 +7,13 @@ import io.gazelle.apimock.utils.DTOProvider;
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.JerseyTestNg;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 
-public class GazelleTest extends JerseyTest {
+public class GazelleTest extends JerseyTestNg.ContainerPerClassTest {
 
 	private static final String GAZELLE_API_PACKAGE = AjaxResource.class.getPackage().getName();
 	private final String gazelleURL = getBaseUri().toString();

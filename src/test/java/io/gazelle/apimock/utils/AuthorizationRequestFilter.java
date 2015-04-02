@@ -15,8 +15,6 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter {
 
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
-
-		System.out.println(requestContext.getCookies());
 		if (!requestContext.getCookies().get("session").getValue().equals(LoginResource.SESSION_COOKIE)) {
 			requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
 		}

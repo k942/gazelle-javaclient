@@ -34,6 +34,7 @@ public class GazelleResponseFilter implements ClientResponseFilter {
 		node = objectMapper.readTree(entity);
 		if (!node.get("status").asText().equals("success")) {
 			requestContext.abortWith(Response.status(Status.INTERNAL_SERVER_ERROR).entity(node).build());
+			return;
 		}
 		
 		// and response is not an array { ..., reponse : [ ... ] }

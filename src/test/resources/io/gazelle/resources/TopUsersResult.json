@@ -13,7 +13,7 @@
 		"username": 
 		{
 			"id": "http://jsonschema.net/username",
-			"type": "null"
+			"type": "string"
 		},
 
 		"uploaded": 

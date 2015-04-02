@@ -22,7 +22,7 @@ public class TopUsersResult {
 	@JsonProperty("id")
 	private Long id;
 	@JsonProperty("username")
-	private Object username;
+	private String username;
 	@JsonProperty("uploaded")
 	private Long uploaded;
 	@JsonProperty("upSpeed")
@@ -73,7 +73,7 @@ public class TopUsersResult {
 	 *            The username
 	 */
 	@JsonProperty("username")
-	public void setUsername(Object username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
