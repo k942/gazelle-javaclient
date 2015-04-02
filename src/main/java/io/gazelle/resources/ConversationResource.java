@@ -1,16 +1,19 @@
 package io.gazelle.resources;
 
-import io.gazelle.GazelleClient;
+import io.gazelle.RESTClient;
 import io.gazelle.dto.Conversation;
 
 import javax.ws.rs.client.WebTarget;
 
+import com.google.inject.Inject;
+
 public class ConversationResource {
 
-	private GazelleClient client;
+	private RESTClient client;
 	private WebTarget target;
 
-	public ConversationResource(GazelleClient client, WebTarget parentTarget) {
+	@Inject
+	public ConversationResource(RESTClient client, WebTarget parentTarget) {
 		this.client = client;
 		this.target = parentTarget.queryParam("action", "inbox").queryParam("type", "viewconv");
 	}

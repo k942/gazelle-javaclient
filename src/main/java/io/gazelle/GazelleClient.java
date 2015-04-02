@@ -1,7 +1,7 @@
 package io.gazelle;
 
 import io.gazelle.policies.Policy;
-import io.gazelle.resources.GazelleResources;
+import io.gazelle.utils.ResourceModule;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -26,8 +26,10 @@ import org.glassfish.jersey.client.ClientProperties;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
-public class GazelleClient {
+public class GazelleClient implements RESTClient {
 
 	private static final Logger LOGGER = Logger.getLogger(GazelleClient.class);
 
@@ -53,14 +55,17 @@ public class GazelleClient {
 		CookieHandler.setDefault(cookieManager);
 	}
 
-	public void setupTargets() {
+	/**
+	 * Setup the WebTarget according to {@link GazelleClient#gazelleUrl}. 
+	 */
+	private void setupTargets() {
 		baseTarget = client.target(gazelleUrl);
 		loginTarget = baseTarget.path("login.php");
 		ajaxTarget = baseTarget.path("ajax.php");
 		ajaxTarget.register(new GazelleResponseFilter(objectMapper));
 
-		resources = GazelleResources.newInstance(this, ajaxTarget);
-
+		Injector i = Guice.createInjector(new ResourceModule(this, ajaxTarget));
+		resources = i.getInstance(GazelleResources.class);
 	}
 
 	public static GazelleClient newInstance(String gazelleUrl, String username, String password) {
@@ -68,7 +73,6 @@ public class GazelleClient {
 		gClient.setUsername(username);
 		gClient.setPassword(password);
 		gClient.setGazelleUrl(gazelleUrl);
-		gClient.setupTargets();
 		return gClient;
 	}
 
@@ -138,6 +142,7 @@ public class GazelleClient {
 
 	public void setGazelleUrl(String gazelleUrl) {
 		this.gazelleUrl = gazelleUrl;
+		this.setupTargets();
 	}
 
 	/**

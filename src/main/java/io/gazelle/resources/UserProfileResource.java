@@ -1,16 +1,19 @@
 package io.gazelle.resources;
 
-import io.gazelle.GazelleClient;
+import io.gazelle.RESTClient;
 import io.gazelle.dto.Userprofile;
 
 import javax.ws.rs.client.WebTarget;
 
+import com.google.inject.Inject;
+
 public class UserProfileResource {
 
-	private GazelleClient client;
+	private RESTClient client;
 	private WebTarget target;
 
-	public UserProfileResource(GazelleClient client, WebTarget parentTarget) {
+	@Inject
+	public UserProfileResource(RESTClient client, WebTarget parentTarget) {
 		this.client = client;
 		this.target = parentTarget.queryParam("action", "user");
 	}
