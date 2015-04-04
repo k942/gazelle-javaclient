@@ -1,5 +1,6 @@
 package io.gazelle.resources;
 
+import io.gazelle.APIException;
 import io.gazelle.RESTClient;
 import io.gazelle.dto.Index;
 
@@ -18,7 +19,7 @@ public class IndexResource {
 		this.target = parentTarget.queryParam("action", "index");
 	}
 
-	public Index get() {
+	public Index get() throws APIException {
 		return client.get(target, Index.class);
 	}
 }

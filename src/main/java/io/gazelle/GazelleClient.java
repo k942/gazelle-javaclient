@@ -16,9 +16,11 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Form;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.apache.log4j.Logger;
 import org.glassfish.jersey.client.ClientProperties;
@@ -56,7 +58,7 @@ public class GazelleClient implements RESTClient {
 	}
 
 	/**
-	 * Setup the WebTarget according to {@link GazelleClient#gazelleUrl}. 
+	 * Setup the WebTarget according to {@link GazelleClient#gazelleUrl}.
 	 */
 	private void setupTargets() {
 		baseTarget = client.target(gazelleUrl);
@@ -67,7 +69,7 @@ public class GazelleClient implements RESTClient {
 		Injector i = Guice.createInjector(new ResourceModule(this, ajaxTarget));
 		resources = i.getInstance(GazelleResources.class);
 	}
-	
+
 	private void login() {
 		LOGGER.info("Logging on website: " + gazelleUrl);
 		Form form = new Form();
@@ -92,6 +94,17 @@ public class GazelleClient implements RESTClient {
 		}
 	}
 
+	private Response createInvocation(WebTarget target) throws APIException {
+		ensureLogin();
+		policies.forEach(p -> p.enforce());
+		LOGGER.debug("Invocation: " + target);
+		Response response = target.request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			throw new APIException(response.toString(), response.readEntity(String.class));
+		}
+		return response;
+	}
+
 	public static GazelleClient newInstance(String gazelleUrl, String username, String password) {
 		GazelleClient gClient = new GazelleClient();
 		gClient.setUsername(username);
@@ -100,20 +113,20 @@ public class GazelleClient implements RESTClient {
 		return gClient;
 	}
 
+	public <T> T get(WebTarget target, Class<T> responseType) throws APIException {
+		return createInvocation(target).readEntity(responseType);
+	}
+
+	public <T> T get(WebTarget target, GenericType<T> responseType) throws APIException {
+		return createInvocation(target).readEntity(responseType);
+	}
+
 	public void close() {
 		client.close();
 	}
 
 	public void enforce(Policy policy) {
 		policies.add(policy);
-	}
-
-	public <T> T get(WebTarget target, Class<T> responseType) {
-		ensureLogin();
-		policies.forEach(p -> p.enforce());
-		return target.request(MediaType.APPLICATION_JSON_TYPE).cookie(Cookie.valueOf(sessionCookie.get().getValue()))
-				.get(responseType);
-
 	}
 
 	public String getUsername() {

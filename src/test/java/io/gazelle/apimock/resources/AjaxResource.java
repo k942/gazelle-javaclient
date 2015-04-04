@@ -1,13 +1,10 @@
 package io.gazelle.apimock.resources;
 
-import io.gazelle.apimock.utils.AjaxAction;
 import io.gazelle.apimock.utils.AjaxResponse;
-import io.gazelle.apimock.utils.DTOProvider;
 import io.gazelle.apimock.utils.Secured;
-import io.gazelle.resources.TopResource.TopType;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 import javax.ws.rs.GET;
@@ -22,49 +19,35 @@ import javax.ws.rs.core.UriInfo;
 @Secured
 public class AjaxResource {
 
-	private DTOProvider dtoProvider = DTOProvider.INSTANCE;
-
 	@GET
-	public Response getAjay(@Context UriInfo info) throws IOException {
-		String requestAcion = info.getQueryParameters().getFirst("action");
+	public Response getAjay(@Context UriInfo uriInfo) throws IOException {
+		String requestAcion = uriInfo.getQueryParameters().getFirst("action");
 
-		AjaxResponse ajaxResponse = new AjaxResponse();
-		ajaxResponse.setStatus("failure");
-
-		AjaxAction action = null;
+		AjaxResponse ajaxResponse = new AjaxResponse("failure", "Process of request failed");
+		Optional<AjaxAction> action = Optional.empty();
 		try {
-			action = AjaxAction.valueOf(requestAcion.toUpperCase());
-			
-			if (action == AjaxAction.INBOX) {
-				String type = info.getQueryParameters().getFirst("type");
-				if (type.equals("viewconv")) {
-					action = AjaxAction.INBOX_VIEWCONV;
-				}
-			}
-			
-			if (action == AjaxAction.TOP10) {
-				String type = info.getQueryParameters().getFirst("type");
-				TopType topType = Arrays.asList(TopType.values()).stream().filter(t -> t.toString().equals(type)).findFirst().get();
-				
-				switch (topType) {
-					case TORRENTS: action = AjaxAction.TOP10_TORRENTS; break;
-					case TAGS: action = AjaxAction.TOP10_TAGS; break;
-					case USERS: action = AjaxAction.TOP10_USERS; break;
-					default :
-						break;
-				}
-				
-			}
+			action = Optional.of(AjaxAction.valueOf(requestAcion.toUpperCase()));
 		} catch (IllegalArgumentException e) {
-			ajaxResponse.setResponse("No action for " + requestAcion);
+			return failure("No action for " + requestAcion);
 		}
 
-		if (action != null) {
-			ajaxResponse.setStatus("success");
-			ajaxResponse.setResponse(dtoProvider.setInstance(action.getDto()));
+		if (action.isPresent()) {
+			ajaxResponse = handleAction(action.get(), uriInfo);
 		}
 
-		return Response.ok().type(MediaType.APPLICATION_JSON).entity(ajaxResponse).build();
+		return responseWith(ajaxResponse);
 	}
-	
+
+	private Response failure(String message) {
+		return responseWith(new AjaxResponse("failure", message));
+	}
+
+	private Response responseWith(AjaxResponse response) {
+		return Response.ok().type(MediaType.APPLICATION_JSON).entity(response).build();
+	}
+
+	private AjaxResponse handleAction(AjaxAction action, UriInfo uriInfo) {
+		return action.handle(uriInfo);
+	}
+
 }

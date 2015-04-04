@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientResponseContext;
 import javax.ws.rs.client.ClientResponseFilter;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
 
@@ -25,25 +24,41 @@ public class GazelleResponseFilter implements ClientResponseFilter {
 	public GazelleResponseFilter(ObjectMapper objectMapper) {
 		this.objectMapper = objectMapper;
 	}
+	
+	/**
+	 * Filtering request from Gazelle. </br>
+	 * <ul>
+	 * <li>Envelope JSON is unwrapped.</li>
+	 * <li>If status is not 'success' the filter chain is broke</li>
+	 * </ul>
+	 * 
+	 */
 	@Override
 	public void filter(ClientRequestContext requestContext, ClientResponseContext responseContext)
 			throws JsonProcessingException, IOException {
+		
 		InputStream entity = responseContext.getEntityStream();
 		JsonNode node;
+		
 
 		node = objectMapper.readTree(entity);
+		entity.close();
+		
+
 		if (!node.get("status").asText().equals("success")) {
-			requestContext.abortWith(Response.status(Status.INTERNAL_SERVER_ERROR).entity(node).build());
+			InputStream is = IOUtils.toInputStream(node.toString(), StandardCharsets.UTF_8);
+			responseContext.setEntityStream(is);
+			responseContext.setStatusInfo(Status.INTERNAL_SERVER_ERROR);
 			return;
 		}
-		
-		// and response is not an array { ..., reponse : [ ... ] }
-		String response = node.toString();
-		if (!node.get("response").isArray()) {
+
+		String response = "";
+		if (node.get("response") != null) {
 			response = node.get("response").toString();
 		}
-		InputStream is = IOUtils.toInputStream(response, StandardCharsets.UTF_8);
-		responseContext.setEntityStream(is);
+
+		InputStream ids = IOUtils.toInputStream(response, StandardCharsets.UTF_8);
+		responseContext.setEntityStream(ids);
 
 		String contentType = responseContext.getHeaders().getFirst("Content-Type");
 		if (contentType.startsWith("text/plain")) {

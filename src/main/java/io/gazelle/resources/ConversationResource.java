@@ -1,5 +1,6 @@
 package io.gazelle.resources;
 
+import io.gazelle.APIException;
 import io.gazelle.RESTClient;
 import io.gazelle.dto.Conversation;
 
@@ -18,7 +19,7 @@ public class ConversationResource {
 		this.target = parentTarget.queryParam("action", "inbox").queryParam("type", "viewconv");
 	}
 
-	public Conversation get(Long id) {
+	public Conversation get(Long id) throws APIException {
 		return client.get(target.queryParam("id", id), Conversation.class);
 	}
 }

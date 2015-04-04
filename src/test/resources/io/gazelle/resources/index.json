@@ -87,7 +87,7 @@
 				"ratio": 
 				{
 					"id": "http://jsonschema.net/userstats/ratio",
-					"type": "number"
+					"type": "string"
 				},
 
 				"requiredratio": 

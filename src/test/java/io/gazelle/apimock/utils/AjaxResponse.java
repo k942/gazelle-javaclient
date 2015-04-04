@@ -2,8 +2,13 @@ package io.gazelle.apimock.utils;
 
 public class AjaxResponse {
 
-	String status;
-	Object response;
+	private String status;
+	private Object response;
+	
+	public AjaxResponse(String status, Object response) {
+		this.status = status;
+		this.response = response;
+	}
 
 	public String getStatus() {
 		return status;

@@ -28,7 +28,7 @@ public class Stats {
 	@JsonProperty("downloaded")
 	private Long downloaded;
 	@JsonProperty("ratio")
-	private Double ratio;
+	private String ratio;
 	@JsonProperty("requiredRatio")
 	private Double requiredRatio;
 	@JsonIgnore
@@ -116,7 +116,7 @@ public class Stats {
 	 * @return The ratio
 	 */
 	@JsonProperty("ratio")
-	public Double getRatio() {
+	public String getRatio() {
 		return ratio;
 	}
 
@@ -126,7 +126,7 @@ public class Stats {
 	 *            The ratio
 	 */
 	@JsonProperty("ratio")
-	public void setRatio(Double ratio) {
+	public void setRatio(String ratio) {
 		this.ratio = ratio;
 	}
 

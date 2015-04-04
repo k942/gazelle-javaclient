@@ -1,5 +1,6 @@
 package io.gazelle.resources;
 
+import io.gazelle.APIException;
 import io.gazelle.RESTClient;
 import io.gazelle.dto.Userprofile;
 
@@ -18,7 +19,7 @@ public class UserProfileResource {
 		this.target = parentTarget.queryParam("action", "user");
 	}
 
-	public Userprofile get(Long id) {
+	public Userprofile get(Long id) throws APIException {
 		return client.get(target.queryParam("id", id), Userprofile.class);
 	}
 }

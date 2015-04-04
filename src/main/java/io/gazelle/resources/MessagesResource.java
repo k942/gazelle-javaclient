@@ -1,5 +1,6 @@
 package io.gazelle.resources;
 
+import io.gazelle.APIException;
 import io.gazelle.RESTClient;
 import io.gazelle.dto.Messages;
 
@@ -18,11 +19,11 @@ public class MessagesResource {
 		this.target = parentTarget.queryParam("action", "inbox");
 	}
 
-	public Messages get() {
+	public Messages get() throws APIException {
 		return get(new MessagesResourceArgs());
 	}
 
-	public Messages get(MessagesResourceArgs params) {
+	public Messages get(MessagesResourceArgs params) throws APIException {
 		return client.get(params.apply(target), Messages.class);
 	}
 }

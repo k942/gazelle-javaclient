@@ -61,7 +61,7 @@
 				"ratio": 
 				{
 					"id": "http://jsonschema.net/stats/ratio",
-					"type": "number"
+					"type": "string"
 				},
 
 				"requiredRatio": 
